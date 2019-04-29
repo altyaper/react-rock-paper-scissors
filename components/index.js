@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 class Root extends Component {
   render() {
     return (
-      <h1>I <3 Perluki</h1>
+      <h1>I love Perluki</h1>
     )
   }
 }
