@@ -4,7 +4,8 @@ module.exports = {
   entry: './components/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: '[name].js',
+    publicPath: 'dist/'
   },
   module: {
     rules: [
@@ -19,5 +20,15 @@ module.exports = {
         }
       }
     ]
+  },
+  devServer: {
+    port: 3000,
+    contentBase: __dirname,
+    compress: true,
+    stats: 'errors-only',
+    historyApiFallback: true
+  },
+  resolve: {
+    extensions: [' ', '.js', '.jsx']
   }
 }
