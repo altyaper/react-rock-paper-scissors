@@ -99,13 +99,15 @@ $scissors-color: #535353;
   margin: 0 auto;
   .row {
     display: flex;
+    align-items: center;
     margin: 10px 0px;
     img:nth-child(1) {
       margin-right: auto;
     }
     .line {
       border-top: 2px solid black;
-      width: 50%;
+      width: 100%;
+      padding: 0 10px;
     }
   }
 }
