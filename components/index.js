@@ -67,13 +67,7 @@ class App extends Component {
 
   generateRandomOption() {
     let randomNumber = Math.floor(Math.random() * Math.floor(3));
-    if(randomNumber == 0) {
-      return 'r';
-    } else if (randomNumber == 1) {
-      return 'p';
-    } else {
-      return 's';
-    }
+    return ['r', 'p', 's'][randomNumber];
   }
 
   render() {
