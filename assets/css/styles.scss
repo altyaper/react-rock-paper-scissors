@@ -88,12 +88,16 @@ $scissors-color: #535353;
           border-radius: 10px;
           color: white;
           border: 1px solid white;
+          width: 50px;
+          margin: 0 auto;
         }
       }
 
       &:nth-child(2) {
         &:before {
           content: "CPU";
+          width: 50px;
+          margin: 0 auto;
           display: block;
           text-align: center;
           font-size: 15px;
