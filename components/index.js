@@ -79,9 +79,9 @@ class App extends Component {
     return (
       <div className="app">
         <Title />
+        <Results points={points}/>
         <Options onClickOption={this.handleClickOption}/>
         <InfoMatch match={matchInfo}/>
-        <Results points={points}/>
         <Timeline items={timeline}/>
       </div>
     )
