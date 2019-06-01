@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { getOptionNameByLetter, generateRandomOption } from '../lib/helper_functions';
 import CSS from '../assets/css/styles.scss';
 
 // Components
@@ -23,15 +24,6 @@ class App extends Component {
     }
   }
 
-  getOptionNameByLetter(letter) {
-    const options = {
-      r: 'Rock',
-      p: 'Paper',
-      s: 'Scissors'
-    }
-    return options[letter];
-  }
-
   handleWin = (userOptionWord, cpuOptionWord) => {
     const matchInfo = `${userOptionWord} beats ${cpuOptionWord}. You win. 🔥`;
     let { points } = this.state;
@@ -53,10 +45,11 @@ class App extends Component {
 
   handleClickOption = (userOption) => {
     let { timeline } = this.state;
-    let cpuOption = this.generateRandomOption();
+    let cpuOption = generateRandomOption();
     let match = userOption + cpuOption;
-    const userOptionWord = this.getOptionNameByLetter(userOption);
-    const cpuOptionWord = this.getOptionNameByLetter(cpuOption);
+
+    const userOptionWord = getOptionNameByLetter(userOption);
+    const cpuOptionWord = getOptionNameByLetter(cpuOption);
 
     switch (match) {
       case 'rs':
@@ -78,10 +71,6 @@ class App extends Component {
     this.setState({timeline});
   }
 
-  generateRandomOption() {
-    let randomNumber = Math.floor(Math.random() * Math.floor(3));
-    return ['r', 'p', 's'][randomNumber];
-  }
 
   render() {
 
