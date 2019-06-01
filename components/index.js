@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <h1>Hola mundo desde React</h1>
+        <h1>ReactSchool</h1>
         <img src="/assets/images/react-logo.png"/>
       </div>
     )
