@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import CSS from '../assets/css/styles.scss';
 
 class App extends Component {
-
   render() {
     return (
       <div className="app">
