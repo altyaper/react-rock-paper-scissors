@@ -9,6 +9,7 @@ import Options from './options';
 import Results from './results';
 import Timeline from './timeline';
 import InfoMatch from './infomatch';
+import Confetti from './confetti';
 
 class App extends Component {
 
@@ -20,7 +21,8 @@ class App extends Component {
         cpu: 0
       },
       matchInfo: '',
-      timeline: []
+      timeline: [],
+      showConfetti: false
     }
   }
 
@@ -29,6 +31,7 @@ class App extends Component {
     let { points } = this.state;
     points.me = points.me + 1;
     this.setState({points, matchInfo});
+    this.confettiTimer();
   }
 
   handleLose = (userOptionWord, cpuOptionWord) => {
@@ -41,6 +44,17 @@ class App extends Component {
   handleDraw = (userOptionWord, cpuOptionWord) => {
     const matchInfo = `${userOptionWord} equals ${cpuOptionWord}. It's a draw. 😶`;
     this.setState({matchInfo});
+  }
+
+  confettiTimer = () => {
+    this.setState({
+      showConfetti: true
+    });
+    setTimeout(() => {
+      this.setState({
+        showConfetti: false
+      })
+    }, 1000)
   }
 
   handleClickOption = (userOption) => {
@@ -74,12 +88,12 @@ class App extends Component {
 
   render() {
 
-    let { points, timeline, matchInfo } = this.state;
-
+    let { points, timeline, matchInfo, showConfetti } = this.state;
     return (
       <div className="app">
         <Title />
         <Results points={points}/>
+        {showConfetti && <Confetti />}
         <Options onClickOption={this.handleClickOption}/>
         <InfoMatch match={matchInfo}/>
         <Timeline items={timeline}/>
