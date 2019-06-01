@@ -7,7 +7,7 @@ function Timeline(props) {
     <div className="timeline">
       { items.slice(0).reverse().map((value, index) => {
         return (
-          <div className="row">
+          <div className="row" key={index}>
             <img src={`assets/images/mini-${value.me}.png`}/>
             <div className="line"></div>
             <img src={`assets/images/mini-${value.cpu}.png`}/>

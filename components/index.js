@@ -7,6 +7,7 @@ import Title from './title';
 import Options from './options';
 import Results from './results';
 import Timeline from './timeline';
+import InfoMatch from './infomatch';
 
 class App extends Component {
 
@@ -17,47 +18,62 @@ class App extends Component {
         me: 0,
         cpu: 0
       },
+      matchInfo: '',
       timeline: []
     }
   }
 
-  handleWin = () => {
+  getOptionNameByLetter(letter) {
+    const options = {
+      r: 'Rock',
+      p: 'Paper',
+      s: 'Scissors'
+    }
+    return options[letter];
+  }
+
+  handleWin = (userOptionWord, cpuOptionWord) => {
+    const matchInfo = `${userOptionWord} beats ${cpuOptionWord}. You win. 🔥`;
     let { points } = this.state;
     points.me = points.me + 1;
-    this.setState({
-      points
-    })
+    this.setState({points, matchInfo});
   }
 
-  handleLose = () => {
+  handleLose = (userOptionWord, cpuOptionWord) => {
+    const matchInfo = `${userOptionWord} loses to ${cpuOptionWord}. You lost. 💩`;
     let { points } = this.state;
     points.cpu = points.cpu + 1;
+    this.setState({matchInfo, points});
   }
 
-  handleDraw = () => {
+  handleDraw = (userOptionWord, cpuOptionWord) => {
+    const matchInfo = `${userOptionWord} equals ${cpuOptionWord}. It's a draw. 😶`;
+    this.setState({matchInfo});
   }
 
-  handleClickOption = (meOption) => {
+  handleClickOption = (userOption) => {
     let { timeline } = this.state;
     let cpuOption = this.generateRandomOption();
-    let fight = meOption+cpuOption;
+    let match = userOption + cpuOption;
+    const userOptionWord = this.getOptionNameByLetter(userOption);
+    const cpuOptionWord = this.getOptionNameByLetter(cpuOption);
 
-    switch (fight) {
+    switch (match) {
       case 'rs':
       case 'pr':
       case 'sp':
-        this.handleWin()
+        this.handleWin(userOptionWord, cpuOptionWord);
         break;
       case 'rp':
       case 'ps':
       case 'sr':
-        this.handleLose();
+        this.handleLose(userOptionWord, cpuOptionWord);
         break;
       default:
-        this.handleDraw();
+        this.handleDraw(userOptionWord, cpuOptionWord);
     }
 
-    let newItem = {me: meOption, cpu: cpuOption};
+    let newItem = {me: userOption, cpu: cpuOption};
     timeline.push(newItem);
     this.setState({
       timeline
@@ -72,12 +88,13 @@ class App extends Component {
 
   render() {
 
-    let { points, timeline } = this.state;
+    let { points, timeline, matchInfo } = this.state;
 
     return (
       <div className="app">
         <Title />
         <Options onClickOption={this.handleClickOption}/>
+        <InfoMatch match={matchInfo}/>
         <Results points={points}/>
         <Timeline items={timeline}/>
       </div>
@@ -85,6 +102,7 @@ class App extends Component {
   }
 
 }
+
 let container = document.getElementById('app');
 let component = <App />;
 
