@@ -75,10 +75,7 @@ class App extends Component {
 
     let newItem = {me: userOption, cpu: cpuOption};
     timeline.push(newItem);
-    this.setState({
-      timeline
-    });
-
+    this.setState({timeline});
   }
 
   generateRandomOption() {
