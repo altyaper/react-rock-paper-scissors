@@ -11,8 +11,8 @@ class App extends Component {
       </div>
     )
   }
-
 }
+
 let container = document.getElementById('app');
 let component = <App />;
 
