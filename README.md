@@ -1,6 +1,6 @@
 # ReactSchool
 
-## To start your Phoenix app
+## To start your App
 
 * Install dependencies with `npm install`
 * Start the app with `npm run start`
